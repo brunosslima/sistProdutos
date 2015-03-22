@@ -6,4 +6,4 @@ Pequeno Sistema de Cadastro de Produtos e estatísticas de venda.
 1. Descompacte a pasta produtos.zip
 2. Crie a estrutura de banco de dados com o arquivo /produtos/sql/sql.sql
 3. Configure a concexão com o bd no arquivo /produtos/app/config/parameters.yml
-4. 
+4. Acesse http://localhost/produtos/web/app_dev.php/produtos
