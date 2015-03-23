@@ -1,0 +1,28 @@
+produtos:
+    pattern:   /produtos
+    defaults:  { _controller: ProdutoBundle:HomeProduto:index }
+
+cadastro:
+    pattern:   /cadastro
+    defaults:  { _controller: ProdutoBundle:Cadastro:index }
+
+inserir_produto:
+    pattern:   /cadastro/inserir_produto
+    defaults:  { _controller: ProdutoBundle:Cadastro:inserir }
+
+estatisticas:
+    pattern:   /estatisticas
+    defaults:  { _controller: ProdutoBundle:Estatistica:index }
+
+busca_codigo:
+    pattern:   /estatisticas/busca_codigo
+    defaults:  { _controller: ProdutoBundle:Estatistica:busca_codigo }
+
+busca_produto:
+    pattern:   /estatisticas/busca_produto
+    defaults:  { _controller: ProdutoBundle:Estatistica:busca_produto }
+
+estatistica_produto:
+    pattern:   /estatisticas/estatistica_produto
+    defaults:  { _controller: ProdutoBundle:Estatistica:estatistica_produto }
+

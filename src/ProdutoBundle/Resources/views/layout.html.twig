@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Sistema de Cadastro de Produto!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('bundles/produtos/css/bootstrap.css') }}" />
+        <script src="{{ asset('bundles/produtos/js/jquery-1.11.2.min.js') }}"></script>
+        <script src="{{ asset('bundles/produtos/js/bootstrap.min.js') }}"></script>
+        {% block content_js %}{% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <header class="row">
+                <div class="block">
+                    <div class="container-fluid text-center">
+                        <div class="img-circle"><img src={{ asset('bundles/produtos/images/logo.png') }} />
+                        </div>
+                    </div>
+                    <div class="container-fluid text-center">
+                        <hr />
+                    </div>
+                </div>
+            </header>
+            <div class="row">
+                <div role="main" class="col-md-6 col-md-push-3">
+                    <div class="block">
+                        {% block content_body %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+            <br>
+            <footer class="row">
+                <div class="block">
+                    <div class="container-fluid text-center">
+                        <hr />
+                        <span class="h6">Informações do rodape</span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

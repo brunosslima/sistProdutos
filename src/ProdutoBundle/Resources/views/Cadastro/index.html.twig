@@ -1,0 +1,93 @@
+{% extends 'ProdutoBundle::layout.html.twig' %}
+
+{% block content_js %}
+<script>
+    $(document).ready( function(){
+        $('#descricao, #qt').keyup( function(){
+            if($('#descricao').val() !== "" && parseInt($('#qt').val(), 10) > parseInt('0', 10)){
+                $('#cadastrar').removeAttr('disabled');
+            }
+            else if($('#descricao').val() == "" || $('#qt').val() == "" || parseInt($('#qt').val(), 10) == parseInt('0', 10)){
+                $('#cadastrar').attr('disabled', true);
+            }
+        });
+        $('#qt').click( function(){
+            if(parseInt($('#qt').val(), 10) > parseInt('0', 10) && $('#descricao').val() != ""){
+                $('#cadastrar').removeAttr('disabled');
+            }
+        });
+        
+        $('#cadastrar').click( function(){
+            $.ajax({
+                url: '{{ path('inserir_produto') }}', 
+                method: 'POST',
+                data: { produto: $('#descricao').val(), qt: $('#qt').val() },
+                success: function(r){
+                    $('#modal').modal('show');
+                    if(r == 'ok'){
+                        $('.modal-title').text("Confirmacao de inclusao");
+                        $('.modal-body > p').text("Produto incluido com sucesso!");
+                    }
+                    else{
+                        $('.modal-title').text("*** Erro ***");
+                        $('.modal-body > p').text("Produto nao foi incluido!");
+                    }
+                    $('#descricao').val("");
+                    $('#qt').val("");
+                }
+            });
+        });
+        
+        $('#fechar').click( function(){
+            $('#descricao').focus();
+            $('#cadastrar').attr('disabled', true);
+        });
+    })
+</script>
+{% endblock %}
+
+{% block content_body %}
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div role="main" class="col-md-6 col-md-push-3">
+                <div class="row">
+                    &nbsp;
+                </div>
+                <form>
+                    <div class="form-group">
+                        <div class="row text-left">
+                            <label for="descricao" class="text-left">Descrição do Produto</label>
+                            <input type="text" class="form-control campo" id="descricao" name="descricao" placeholder="Descrição do Produto" maxlength="45" autofocus>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row text-left">
+                            <label for="qt" class="text-left">Quantidade de venda</label>
+                            <input type="number" class="form-control campo" id="qt" name="qt" placeholder="Quantidade" maxlength="8" min="1">
+                        </div>
+                    </div>
+                    <button id="cadastrar" type="button" class="btn btn-primary btn-lg active" disabled>Cadastrar</button>
+                    <a href="{{ path('produtos') }}" class="btn btn-primary btn-lg active" role="button">Voltar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <p></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="fechar" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

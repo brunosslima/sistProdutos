@@ -1,0 +1,2 @@
+produto_home:
+    resource: "@ProdutoBundle/Resources/config/routing.yml"
